@@ -1,0 +1,10 @@
+const express = require('express');
+const contestDetails = require('../controllers/contestdetailController');
+const contestReminder = require('../controllers/contestReminderController');
+const reminderService = require('../controllers/ReminderSender');
+const {validate} = require("node-cron");
+const router = express.Router();
+router.get(`/:plat/:status`, contestDetails.contestController);
+router.post(`/set-reminder`,contestReminder.contestReminderController);
+router.post('/reminder', reminderService.contestReminderSenderService);
+module.exports = router;

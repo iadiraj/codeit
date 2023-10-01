@@ -1,0 +1,15 @@
+const express = require('express');
+const router = express.Router();
+const validate = require('../middlewares/authenticate');
+const homeController = require('../controllers/homepageController');
+const compareController = require('../controllers/compareController');
+const userController = require('../controllers/userController');
+const userInfoController = require('../controllers/userinfoController');
+router.post(`/login`, userController.logIn);
+router.post(`/signup`, userController.signUp);
+router.post(`/logout`, userController.logOut);
+router.post(`/compare/:username`,validate, compareController.compareController);
+// router.get(`/`, validate, homeController.homeController);
+router.get(`/`, validate, homeController.homeController);
+router.post(`/userinfo`,validate, userInfoController.userInfo);
+module.exports = router;
